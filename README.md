@@ -18,3 +18,7 @@ bun install
 ```
 bun run dev
 ```
+
+### Setup Instruction For Tailwind
+
+[Tailwind Instruction](https://tailwindcss.com/docs/guides/vite)
