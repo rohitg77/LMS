@@ -8,8 +8,8 @@ function HomePage() {
       <div className="pt-10 text-white flex items-center justify-center gap-10 mx-16 min-h-[90vh]">
         <div className="w-1/2 space-y-6  ">
           <h1 className="text-5xl font-semibold">
-            Find out best
-            <span className="text-yellow-500 font-bold">Online Courses</span>
+            Find out best 
+            <span className="text-yellow-500 font-bold"> Online Courses</span>
           </h1>
           <p className="text-xl text-gray-200">
             We have a large library of courses taught by highly skilled and
