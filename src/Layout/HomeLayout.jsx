@@ -16,6 +16,7 @@ function HomeLayout({ children }) {
     const drawerSide = document.getElementsByClassName("drawer-side");
     drawerSide[0].style.width = "auto";
   }
+
   function hideDrawer() {
     const ele = document.getElementsByClassName("drawer-toggle");
     ele[0].checked = false;
@@ -24,21 +25,20 @@ function HomeLayout({ children }) {
     drawerSide[0].style.width = "0px ";
   }
 
-  const handleLogout=(e)=>{
-    e.preventDefault()
-
-    // const res= dispatch(logout())
-
+  const handleLogout = (e) => {
+    e.preventDefault();
+    // const res = dispatch(logout());
     // if (res?.payload?.success) {
-    //   navigate("/")
+    //   navigate("/");
     // }
-  }
+  };
+
   return (
     <div className="min-h-[90vh] ">
-      <div className="drawer absolute left-0 z-50 w-fit">
+      <div className="drawer h-[100vh] absolute left-0 z-50 w-fit">
         <input id="my-drawer" type="checkbox" className="drawer-toggle" />
-        <div className="drawer-content ">
-          <label htmlFor="my-drawer" className="cursor-pointer relative ">
+        <div className="drawer-content h-full">
+          <label htmlFor="my-drawer" className="cursor-pointer relative">
             <FiMenu
               onClick={changeWidth}
               size={"32px"}
@@ -46,63 +46,64 @@ function HomeLayout({ children }) {
             />
           </label>
         </div>
-        <div className="drawer-side w-0">
-          <label htmlFor="my-drawer" className="drawer-overlay"></label>
-          <ul className="menu w-48 p-4 sm:w-80 bg-base-200 text-base-content">
-            <li className="w-fit absolute right-2 z-50 ">
-              <button onClick={hideDrawer}>
-                <AiFillCloseCircle size={"24px"} />
-              </button>
-            </li>
-            <li>
-              <Link to="/">Home</Link>
-            </li>
-
-            {isLoggedIn && role === "admin" && (
-              <li>
-                <Link to="/admin/dashboard">Admin Dashboard</Link>
+        <div className="drawer-side h-full">
+          <label htmlFor="my-drawer" className="drawer-overlay h-full"></label>
+          <ul className="menu flex flex-col justify-between w-48 p-4 sm:w-80 bg-base-200 text-base-content h-full">
+            <div>
+              <li className="w-fit absolute right-2 z-50 ">
+                <button onClick={hideDrawer}>
+                  <AiFillCloseCircle size={"24px"} />
+                </button>
               </li>
-            )}
-
-            <li>
-              <Link to="/courses">All Courses</Link>
-            </li>
-            <li>
-              <Link to="/contact">Contact Us</Link>
-            </li>
-            <li>
-              <Link to="/about">About Us</Link>
-            </li>
-
-            {!isLoggedIn && (
               <li>
-                <div className="w-full flex items-center justify-center">
-                  <button className="btn btn-primary ">
-                    <Link to="/login">Login</Link>
-                  </button>
-                  <button className="btn btn-secondary ">
-                    <Link to="/login">Sign Up</Link>
-                  </button>
-                </div>
+                <Link to="/">Home</Link>
               </li>
-            )}
-            {isLoggedIn && (
+              {isLoggedIn && role === "admin" && (
+                <li>
+                  <Link to="/admin/dashboard">Admin Dashboard</Link>
+                </li>
+              )}
               <li>
-                <div className="w-full flex items-center justify-center">
-                  <button className="btn btn-primary ">
-                    <Link to="/user/profile">Profile</Link>
-                  </button>
-                  <button className="btn btn-secondary ">
-                    <Link onClick={handleLogout}>Logout</Link>
-                  </button>
-                </div>
+                <Link to="/courses">All Courses</Link>
               </li>
-            )}
+              <li>
+                <Link to="/contact">Contact Us</Link>
+              </li>
+              <li>
+                <Link to="/about">About Us</Link>
+              </li>
+            </div>
+
+            <div className="mt-auto">
+              {!isLoggedIn && (
+                <li>
+                  <div className="w-full flex items-center justify-center">
+                    <button className="btn btn-primary ">
+                      <Link to="/login">Login</Link>
+                    </button>
+                    <button className="btn btn-secondary ">
+                      <Link to="/signup">Sign Up</Link>
+                    </button>
+                  </div>
+                </li>
+              )}
+              {isLoggedIn && (
+                <li>
+                  <div className="w-full flex items-center justify-center">
+                    <button className="btn btn-primary ">
+                      <Link to="/user/profile">Profile</Link>
+                    </button>
+                    <button className="btn btn-secondary ">
+                      <Link onClick={handleLogout}>Logout</Link>
+                    </button>
+                  </div>
+                </li>
+              )}
+            </div>
           </ul>
         </div>
       </div>
       {children}
-
       <Footer />
     </div>
   );
