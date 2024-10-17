@@ -27,6 +27,7 @@ function Signup() {
   };
 
   const getImage = (e) => {
+    e.preventDefault()
     const image = e.target.files[0];
     if (image) {
       setSignupData({
