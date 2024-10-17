@@ -42,10 +42,16 @@ export const login = createAsyncThunk("/auth/login", async (data) => {
 
 export const logout = createAsyncThunk("/auth/logout", async () => {
     try {
-        const res = axiosInstance.post("user/logout");
+        const res = axiosInstance.get("user/logout");
+        console.log('====================================');
+        console.log(res);
+        console.log('====================================');
         toast.promise(res, {
             loading: "Wait! logout in progress...",
             success: (data) => {
+                console.log('====================================');
+                console.log(data?.data?.message + " data");
+                console.log('====================================');
                 return data?.data?.message;
             },
             error: "Failed to log out"

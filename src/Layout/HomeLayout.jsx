@@ -28,7 +28,7 @@ function HomeLayout({ children }) {
 
   async function handleLogout(e){
     e.preventDefault();
-    const res = dispatch(logout());
+    const res =  dispatch(logout());
     if (res?.payload?.success) {
       navigate("/");
     }
@@ -94,8 +94,8 @@ function HomeLayout({ children }) {
                     <button className="btn btn-primary ">
                       <Link to="/user/profile">Profile</Link>
                     </button>
-                    <button className="btn btn-secondary ">
-                      <Link onClick={handleLogout}>Logout</Link>
+                    <button className="btn btn-secondary  " onClick={handleLogout}>
+                      <Link>Logout</Link>
                     </button>
                   </div>
                 </li>
