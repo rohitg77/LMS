@@ -5,7 +5,9 @@ export default function CourseCard({data}) {
 
   return (
     <div 
-    onClick={()=>navigate(`/courses/${data?._id}`)}
+    onClick={()=>navigate(`/courses/${data?._id}`,
+    {state:{...data}}
+    )}
      className='text-white w-auto h-auto shadow-xl rounded-lg cursor-pointer  group overflow-hidden bg-zinc-700'>
         <div className='overflow-hidden'>
             <img className='h-48 w-full rounded-tl-xl rounded-tr-xl group-hover:scale=[1,2] transition-all ease-in-out' src={data?.thumbnail?.secure_url} alt="course-thumbnail" />
