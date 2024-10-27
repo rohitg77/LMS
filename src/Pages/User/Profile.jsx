@@ -30,12 +30,12 @@ export default function Profile() {
                     <p id='subscription' className='text-sm'>{userData?.subscription?.status==="active" ? "Active" : "Inactive"}</p>
                 </div>
                 <div className='flex items-center justify-center w-full gap-4'>
-                    <Link to="/change-password">
+                    <Link to="/user/change-password">
                     <button className='btn btn-primary w-full'>
                         Change Password
                     </button>
                     </Link>
-                    <Link to="/update-profile">
+                    <Link to="/user/update-profile">
                     <button className='btn btn-primary w-full'>
                         Update Profile
                     </button>
@@ -43,7 +43,7 @@ export default function Profile() {
                 </div>
                 {
                     userData?.subscription?.status==="active" && (
-                        <Link to="/cancel-subscription">
+                        <Link to="/user/cancel-subscription">
                             <button className='btn btn-primary w-full'>
                                 Cancel Subscription
                             </button>

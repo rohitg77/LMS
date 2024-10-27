@@ -13,6 +13,7 @@ import HomePage from "./Pages/HomePage"
 import Login from "./Pages/Login"
 import NotFound from "./Pages/NotFound"
 import Signup from "./Pages/Signup"
+import EditProfile from "./Pages/User/EditProfile"
 import Profile from "./Pages/User/Profile"
 function App() {
 
@@ -34,6 +35,7 @@ function App() {
 
       <Route element={<RequireAuth allowedRoles={['USER', 'ADMIN']}/>}>
         <Route path="/user/profile" element={<Profile/>}/>
+        <Route path="/user/update-profile" element={<EditProfile/>}/>
       </Route>
 
 
