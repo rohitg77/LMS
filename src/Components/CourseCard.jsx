@@ -5,7 +5,7 @@ export default function CourseCard({data}) {
 
   return (
     <div 
-    onClick={()=>navigate(`/courses/${data?._id}`,
+    onClick={()=>navigate(`/courses/${data?.description}`,
     {state:{...data}}
     )}
      className='text-white w-auto h-auto shadow-xl rounded-lg cursor-pointer  group overflow-hidden bg-zinc-700'>
