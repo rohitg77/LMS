@@ -1,9 +1,18 @@
-import React from 'react'
+import { useEffect } from 'react'
+import { useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
 
 import HomeLayout from '../../Layout/HomeLayout'
+import { getUserData } from '../../Redux/Slices/AuthSlice'
 
 export default function CheckoutSuccess() {
+
+    const dispatch=useDispatch()
+
+    useEffect(() => {
+        dispatch(getUserData())
+    }, [])
+
   return (
     <HomeLayout>
         <div className='flex flex-col items-center justify-center min-h-[90vh]'>

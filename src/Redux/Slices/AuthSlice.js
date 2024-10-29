@@ -21,6 +21,7 @@ export const createAccount = createAsyncThunk("/auth/signup", async (data) => {
         return (await res).data;
     } catch(error) {
         toast.error(error?.response?.data?.message);
+        throw error;
     }
 })
 
@@ -37,21 +38,16 @@ export const login = createAsyncThunk("/auth/login", async (data) => {
         return (await res).data;
     } catch(error) {
         toast.error(error?.response?.data?.message);
+        throw error;
     }
 });
 
 export const logout = createAsyncThunk("/auth/logout", async () => {
     try {
         const res = axiosInstance.get("user/logout");
-        console.log('====================================');
-        console.log(res);
-        console.log('====================================');
         toast.promise(res, {
             loading: "Wait! logout in progress...",
             success: (data) => {
-                console.log('====================================');
-                console.log(data?.data?.message + " data");
-                console.log('====================================');
                 return data?.data?.message;
             },
             error: "Failed to log out"
@@ -59,6 +55,7 @@ export const logout = createAsyncThunk("/auth/logout", async () => {
         return (await res).data;
     } catch(error) {
         toast.error(error?.response?.data?.message);
+        throw error;
     }
 })
 
@@ -75,6 +72,7 @@ export const updateProfile = createAsyncThunk("/user/update-profile", async ({id
         return (await res).data;
     } catch(error) {
         toast.error(error?.response?.data?.message);
+        throw error;
     }
 })
 
@@ -84,6 +82,7 @@ export const getUserData = createAsyncThunk("/user/me", async () => {
         return (await res).data;
     } catch(error) {
         toast.error(error?.response?.data?.message);
+        throw error;
     }
 })
 
@@ -95,12 +94,14 @@ const authSlice = createSlice({
     extraReducers: (builder) => {
         builder
         .addCase(login.fulfilled, (state, action) => {
-            localStorage.setItem("data", JSON.stringify(action?.payload?.user));
-            localStorage.setItem("isLoggedIn", true);
-            localStorage.setItem("role", action?.payload?.user?.role);
-            state.isLoggedIn = true;
-            state.data = action?.payload?.user;
-            state.role = action?.payload?.user?.role
+            if(action?.payload?.user) {
+                localStorage.setItem("data", JSON.stringify(action.payload.user));
+                localStorage.setItem("isLoggedIn", true);
+                localStorage.setItem("role", action.payload.user.role);
+                state.isLoggedIn = true;
+                state.data = action.payload.user;
+                state.role = action.payload.user.role;
+            }
         })
         .addCase(logout.fulfilled, (state) => {
             localStorage.clear();
@@ -109,15 +110,16 @@ const authSlice = createSlice({
             state.role = "";
         })
         .addCase(getUserData.fulfilled, (state, action) => {
-            localStorage.setItem("data", JSON.stringify(action?.payload?.user));
-            localStorage.setItem("isLoggedIn", true);
-            localStorage.setItem("role", action?.payload?.user?.role);
-            state.isLoggedIn = true;
-            state.data = action?.payload?.user;
-            state.role = action?.payload?.user?.role
+            if(action?.payload?.user) {
+                localStorage.setItem("data", JSON.stringify(action.payload.user));
+                localStorage.setItem("isLoggedIn", true);
+                localStorage.setItem("role", action.payload.user.role);
+                state.isLoggedIn = true;
+                state.data = action.payload.user;
+                state.role = action.payload.user.role;
+            }
         })
     }
 });
 
-// export const {} = authSlice.actions;
 export default authSlice.reducer;

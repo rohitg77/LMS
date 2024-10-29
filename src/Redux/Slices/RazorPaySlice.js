@@ -22,7 +22,7 @@ export const getRazorPayId=createAsyncThunk("/razorpay/getId", async () => {
     }
 })
 
-export const purchaseCourseBundle=createAsyncThunk("/razorpay/purchase", async () => {
+export const purchaseCourseBundle=createAsyncThunk("/purchase", async () => {
     try {
         const res = await axiosInstance.post("/payments/subscribe");
         return res.data;
@@ -32,7 +32,7 @@ export const purchaseCourseBundle=createAsyncThunk("/razorpay/purchase", async (
     }
 })
 
-export const verifyUserPayment=createAsyncThunk("/razorpay/verify", async (data) => {
+export const verifyUserPayment=createAsyncThunk("/payments/verify", async (data) => {
     try {
         const res = await axiosInstance.post("/payments/verify",{
             razorpay_payment_id: data.razorpay_payment_id,
@@ -47,7 +47,7 @@ export const verifyUserPayment=createAsyncThunk("/razorpay/verify", async (data)
     }
 })
 
-export const getPaymentRecord=createAsyncThunk("/razorpay/record", async () => {
+export const getPaymentRecord=createAsyncThunk("/payments/record", async () => {
     try {
         const res = await axiosInstance.get("/payments?count=100");
         toast.promise(res, {
@@ -56,6 +56,21 @@ export const getPaymentRecord=createAsyncThunk("/razorpay/record", async () => {
             error: "Failed to Fetch Payment Records"
         })
         return (await res).data;
+    } catch (err) {
+        toast.error(err?.response?.data?.message);
+        throw err;
+    }
+})
+
+export const cancelSubscription=createAsyncThunk("/payments/unsubscribe", async () => {
+    try {
+        const res = await axiosInstance.post("/payments/unsubscribe");
+        toast.promise(res, {
+            loading: "Cancelling subscription...",
+            success: (data)=>data?.data?.message,
+            error: "Failed to cancel subscription"
+        })
+        return (await res).data;    
     } catch (err) {
         toast.error(err?.response?.data?.message);
         throw err;
@@ -78,11 +93,16 @@ const razorPaySlice = createSlice({
                 toast.success(action.payload.message);
                 state.isPaymentVerified = action.payload.success;
             })
+            .addCase(verifyUserPayment.rejected, (state, action) => {
+                toast.error(action.error.message);
+                state.isPaymentVerified = action?.payload?.success;
+            })
             .addCase(getPaymentRecord.fulfilled, (state, action) => {
                 state.allPayments = action.payload.allPayments;
                 state.finalMonth = action.payload.finalMonth;
                 state.monthlySalesRecord = action.payload.monthlySalesRecord;
-            });
+            })
+           
     }
 })
 
