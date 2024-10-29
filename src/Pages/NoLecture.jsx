@@ -1,14 +1,11 @@
-import React from 'react'
 import { useNavigate } from 'react-router-dom'
 
-import HomeLayout from '../Layout/HomeLayout'
 
 export default function NoLecture() {
   const navigate = useNavigate()
 
   return (
-    <HomeLayout>
-        <div className='h-[90vh] w-full flex flex-col items-center justify-center text-white'>
+        <div className='h-screen   w-full flex flex-col items-center justify-center text-white'>
       <h1 className='text-4xl font-bold mb-4 text-yellow-500'>
         No Lectures Available
       </h1>
@@ -22,6 +19,5 @@ export default function NoLecture() {
         Go Back
       </button>
     </div>
-    </HomeLayout>
   )
 }
