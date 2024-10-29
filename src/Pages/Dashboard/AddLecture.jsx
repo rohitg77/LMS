@@ -46,6 +46,7 @@ export default function AddLecture() {
         description:"",
         videoSrc:""
       })
+      navigate(-1)
     }
 
   }
