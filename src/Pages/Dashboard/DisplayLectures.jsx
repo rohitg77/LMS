@@ -5,7 +5,7 @@ import { useLocation, useNavigate } from 'react-router-dom'
 
 import HomeLayout from '../../Layout/HomeLayout'
 import { deleteCourseLecture, getCourseLecture } from '../../Redux/Slices/LectureSlice'
-
+import NoLectures from '../NoLecture'
 export default function DisplayLectures() {
   const {state} = useLocation()
   const navigate = useNavigate()
@@ -36,7 +36,7 @@ export default function DisplayLectures() {
           Course Name: {state?.title}
         </div>
         
-        {(lectures && lectures.length > 0) ? (
+        {lectures && lectures.length > 0 ? (
           <div className='flex flex-col md:flex-row justify-center gap-10 w-full min-h-[80vh] px-4'>
             {/* Left section - Video Player */}
             <div className='space-y-3 w-full md:w-[60%] p-2'>
@@ -96,11 +96,15 @@ export default function DisplayLectures() {
             </div>
           </div>
         ) : (
-          role === "ADMIN" && (
-            <button onClick={()=>navigate("/course/addLecture",{state:{...state}})} className='btn btn-accent px-4 py-2 rounded-md font-semibold hover:scale-95 transition-all ease-in-out duration-300'>
-              Add Lecture
-            </button>
-          )
+          <>
+            {role === "ADMIN" ? (
+              <button onClick={()=>navigate("/course/addLecture",{state:{...state}})} className='btn btn-accent px-4 py-2 rounded-md font-semibold hover:scale-95 transition-all ease-in-out duration-300'>
+                Add Lecture
+              </button>
+            ) : (
+              <NoLectures/>
+            )}
+          </>
         )}
       </div>
     </HomeLayout>
