@@ -34,7 +34,7 @@ export default function CourseList() {
                     Made By Experts
                 </span>
             </h1>
-            <div className='mb-10 flex flex-wrap gap-14 '>
+            <div className='mb-10 flex flex-wrap gap-10'>
                     {
                         courseData?.map((course)=>{
                             return <CourseCard  key={course._id} data={course} />

@@ -8,11 +8,6 @@ export default function CourseDescription() {
     const { state } = useLocation();
     const { role, data } = useSelector((state) => state.auth);
     const navigate = useNavigate();
-    useEffect(() => {
-        console.log('====================================');
-        console.log(state);
-        console.log('====================================');
-    }, [state]);
 
     return (
         <HomeLayout>
@@ -40,7 +35,7 @@ export default function CourseDescription() {
                                 </p>
                             </div>
                             {role === "ADMIN" || data?.subscription?.status === "active" ? (
-                                <button className="btn btn-warning text-xl w-full rounded-md font-bold hover:bg-yellow-500 transition-all ease-in-out duration-300">
+                                <button onClick={()=> navigate("/course/lectures",{state:{...state}})} className="btn btn-warning text-xl w-full rounded-md font-bold hover:bg-yellow-500 transition-all ease-in-out duration-300">
                                     Watch Lectures
                                 </button>
                             ) : (
