@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import toast from "react-hot-toast";
 import { useDispatch } from "react-redux";
-import { Link,useNavigate } from "react-router-dom"; // Added Link import
+import { Link,useNavigate } from "react-router-dom"; 
 
 import HomeLayout from "../Layout/HomeLayout";
 import { login } from "../Redux/Slices/AuthSlice";
@@ -40,7 +40,7 @@ function Login() {
       toast.error(response.payload.message || "Login failed");
     }
 
-    // Reset login data after the attempt
+   
     setLoginData({
       email: "",
       password: "",
@@ -68,7 +68,7 @@ function Login() {
             placeholder="enter your email"
             className="bg-transparent px-2 py-1 border rounded-lg"
             onChange={handleUserInput}
-            value={loginData.email} // Changed from signupData to loginData
+            value={loginData.email} 
           />
           
           <label htmlFor="password" className="font-semibold">
@@ -82,7 +82,7 @@ function Login() {
             placeholder="enter your password"
             className="bg-transparent px-2 py-1 border rounded-lg"
             onChange={handleUserInput}
-            value={loginData.password} // Changed from signupData to loginData
+            value={loginData.password} 
           />
           
           <button

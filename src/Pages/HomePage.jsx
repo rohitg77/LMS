@@ -22,11 +22,9 @@ function HomePage() {
                 Explore Courses
               </button>
             </Link>
-            <Link to="/contact">
-              <button className="btn hover:bg-yellow-500  text-white">
-                Contact Us
-              </button>
-            </Link>
+            
+               
+             
           </div>
         </div>
         <div className="w-1/2 flex items-center justify-center">

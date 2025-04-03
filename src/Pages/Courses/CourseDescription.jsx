@@ -39,7 +39,8 @@ export default function CourseDescription() {
                                     Watch Lectures
                                 </button>
                             ) : (
-                                <button onClick={()=> navigate("/checkout")} className="btn btn-warning text-xl w-full rounded-md font-bold hover:bg-yellow-500 transition-all ease-in-out duration-300">
+                                <button  
+                                className="btn btn-warning text-xl w-full rounded-md font-bold hover:bg-yellow-500 transition-all ease-in-out duration-300">
                                     Subscribe to Course
                                 </button>
                             )}

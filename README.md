@@ -4,7 +4,7 @@
 
 1. Clone the Project
 ```
-git clone https://github.com/pratham40/LMS.git
+
 ```
 2. Move into the directory
 ```

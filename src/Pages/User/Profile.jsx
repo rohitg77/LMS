@@ -4,7 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 
 import HomeLayout from '../../Layout/HomeLayout';
 import { getUserData } from '../../Redux/Slices/AuthSlice';
-import { cancelSubscription } from '../../Redux/Slices/RazorPaySlice';
+ 
 
 export default function Profile() {
 
@@ -12,18 +12,7 @@ export default function Profile() {
     const navigate=useNavigate()
     const userData = useSelector((state) => state?.auth?.data);
 
-    async function handleCancelSubscription(){
-        try {
-            toast.loading("Cancelling subscription...")
-            await dispatch(cancelSubscription())
-            await dispatch(getUserData())
-            toast.dismiss()
-            toast.success("Subscription cancelled successfully")
-            navigate("/")
-        } catch (error) {
-            toast.error(error?.response?.data?.message)
-        }
-    }
+     
   return (
     <HomeLayout>
         <div className='flex flex-col items-center justify-center min-h-[90vh] bg'>
@@ -57,7 +46,7 @@ export default function Profile() {
                 {
                     userData?.subscription?.status==="active" && (
                        
-                            <button onClick={handleCancelSubscription} className='btn btn-warning w-full'>
+                            <button   className='btn btn-warning w-full'>
                                 Cancel Subscription
                             </button>
                        

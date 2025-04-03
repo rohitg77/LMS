@@ -59,11 +59,7 @@ function HomeLayout({ children }) {
               <li>
                 <Link to="/">Home</Link>
               </li>
-              {isLoggedIn && role === "ADMIN" && (
-                <li>
-                  <Link to="/admin/dashboard">Admin Dashboard</Link>
-                </li>
-              )}
+               
               {isLoggedIn && role === "ADMIN" && (
                 <li>
                   <Link to="/course/create">Create Course</Link>
@@ -72,12 +68,8 @@ function HomeLayout({ children }) {
               <li>
                 <Link to="/courses">All Courses</Link>
               </li>
-              <li>
-                <Link to="/contact">Contact Us</Link>
-              </li>
-              <li>
-                <Link to="/about">About Us</Link>
-              </li>
+               
+               
             </div>
 
             <div className="mt-auto">
